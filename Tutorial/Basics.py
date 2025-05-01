@@ -1,5 +1,4 @@
 from Tutorial.Console_Utility import Console_Utility as cu
-from Tutorial.Practice import Problems
 import json
 import csv
 
@@ -7,7 +6,7 @@ class Tutorial:
     """These are lego-brick-like notes meant to be read inline and compared in console for learning purposes."""
     
     Util = cu()
-    Problems = Problems()
+
     def Syntax_Variables_Data_Types(self):
         self.Util.Header()
         

@@ -4,6 +4,6 @@ __all__ = [
     'HelloWorld',
     'OOP',
     'APIE',
-    'Practice',
+    # 'Practice',
 
 ]

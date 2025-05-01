@@ -57,7 +57,7 @@ def main():
         print(f'{member.get_role()}: {member.get_details()}. {member.get_contact_info()}')
     
     
-    print(Instance.Problems.Fibonacci(8))
+    # print(Instance.Problems.Fibonacci(8))
 
 
     t1 = time.time()
