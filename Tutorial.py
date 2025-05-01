@@ -32,7 +32,8 @@ def main():
     Instance.IO_Text()
     Instance.IO_JSON()
     Instance.IO_CSV()
-    
+
+
     Instance.Util.Header(title = "OOP - Class, Method, Property")
     # Create two student objects
     student1 = OOP.Student("Alice", "S001") # this is a dependency injection step
@@ -47,7 +48,6 @@ def main():
     student2.display_info()
 
 
-
     Instance.Util.Header(title = "APIE - Abstraction, Polymorphism, Inheritence, Encapsulation")
     # Create objects from concrete classes
     alice = APIE.Student("Alice", "alice@school.com", "S001")
@@ -57,8 +57,7 @@ def main():
         print(f'{member.get_role()}: {member.get_details()}. {member.get_contact_info()}')
     
     
-    # print(Instance.Problems.Fibonacci(8))
-
+    Instance.Lambdas()
 
     t1 = time.time()
     Instance.Util.Header("Application Stats")

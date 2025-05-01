@@ -1,6 +1,7 @@
 from Tutorial.Console_Utility import Console_Utility as cu
 import json
 import csv
+from functools import reduce
 
 class Tutorial:
     """These are lego-brick-like notes meant to be read inline and compared in console for learning purposes."""
@@ -550,3 +551,21 @@ clear() Empty the dictionary	students.clear()'''
 
         print("JSON contents:")
         print(data)
+
+    def Lambdas(self):
+        self.Util.Header()
+
+        grades = [67, 82, 90, 58, 74]
+
+        # Curve grades by adding 5 points using map and lambda
+        curved = list(map(lambda g: g + 5, grades))
+        print("Curved Grades:", curved)
+
+        # Filter only passing grades (>= 70)
+        passing = list(filter(lambda g: g >= 70, curved))
+        print("Passing Grades:", passing)
+
+        # Reduce to calculate total score of passing students
+        total = reduce(lambda a, b: a + b, passing)
+        average = total / len(passing)
+        print("Average passing grades:", average)
