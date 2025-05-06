@@ -33,7 +33,6 @@ def main():
     Instance.IO_JSON()
     Instance.IO_CSV()
 
-
     Instance.Util.Header(title = "OOP - Class, Method, Property")
     # Create two student objects
     student1 = OOP.Student("Alice", "S001") # this is a dependency injection step
@@ -58,6 +57,7 @@ def main():
     
     
     Instance.Lambdas()
+    
 
     t1 = time.time()
     Instance.Util.Header("Application Stats")

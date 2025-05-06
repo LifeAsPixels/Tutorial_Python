@@ -2,6 +2,9 @@ from Tutorial.Console_Utility import Console_Utility as cu
 import json
 import csv
 from functools import reduce
+import logging
+
+logging.basicConfig(level = logging.DEBUG)
 
 class Tutorial:
     """These are lego-brick-like notes meant to be read inline and compared in console for learning purposes."""
@@ -16,6 +19,10 @@ class Tutorial:
         student_age = int(age_input) # type casting
         student_gpa: float = 3.5 # type annotations are like hints -- they do not enforcing typing
         is_enrolled = True
+
+        logging.debug(f'is_enrolled:  {is_enrolled}')
+        # breakpoint()
+
         course_1, course_2 = "English", "Math" # multiple variable assignment
         course_1, course_2 = course_2, course_1 # they are now swapped values
         MAX_STUDENTS = 31 # all caps treats a var as a constant by convention -- not enforced
@@ -465,7 +472,7 @@ clear() Empty the dictionary	students.clear()'''
         print()
         club_a = {1001, 1002, 1003}
         club_b = {1003, 1004, 1005}
-        
+
         # Union: all students in either club
         print('Union:\n' , club_a | club_b)  # {1001, 1002, 1003, 1004, 1005}
         # Intersection: students in both clubs
@@ -569,3 +576,27 @@ clear() Empty the dictionary	students.clear()'''
         total = reduce(lambda a, b: a + b, passing)
         average = total / len(passing)
         print("Average passing grades:", average)
+
+    def Idioms_Enumerate_Zip_Unpack(self):
+        self.Util.Header()
+        
+        # Sample data
+        student_names = ["Alice", "Bob", "Charlie"]
+        grades = [85, 92, 78]
+        courses = ["Math", "Science", "History"]
+        student_records = [("Alice", 85), ("Bob", 92), ("Charlie", 78)]
+
+        # 1. zip(): iterate over multiple sequences together
+        print("Student Grades:")
+        for name, grade in zip(student_names, grades):
+            print(f"{name} scored {grade}")
+
+        # 2. enumerate(): track index while looping
+        print("\nCourse List:")
+        for i, course in enumerate(courses, start=1):
+            print(f"{i}. {course}")
+
+        # 3. Unpacking tuples in a loop
+        print("\nStudent Records:")
+        for name, grade in student_records:
+            print(f"{name} - {grade}")
