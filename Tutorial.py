@@ -59,6 +59,8 @@ def main():
     Instance.Lambdas()
     
 
+    Instance.print_func()
+    
     t1 = time.time()
     Instance.Util.Header("Application Stats")
     print(f'Program took {t1-t0:.4f} seconds to execute.')

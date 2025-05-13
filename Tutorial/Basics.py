@@ -600,3 +600,8 @@ clear() Empty the dictionary	students.clear()'''
         print("\nStudent Records:")
         for name, grade in student_records:
             print(f"{name} - {grade}")
+
+    def print_func(self):
+        name = 'Shawn'
+        print('no newline', name, end = '',)
+        print('no newline', end = '')
