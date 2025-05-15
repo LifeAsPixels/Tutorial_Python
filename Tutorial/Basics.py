@@ -3,6 +3,7 @@ import json
 import csv
 from functools import reduce
 import logging
+import itertools
 
 logging.basicConfig(level = logging.DEBUG)
 
@@ -169,8 +170,25 @@ class Tutorial:
         else:
             print("Student not found.")
     
+        iterator = ['A','B','C']
+        index = 0
+        for item in itertools.cycle(iterator):
+            print(item)
+            index += 1
+            if index > 12:
+                break
+
     scoped_variable = 12
-    
+
+    def cycle(self):
+        iterator = ['A','B','C']
+        index = 0
+        for item in itertools.cycle(iterator):
+            print(item)
+            index += 1
+            if index > 12:
+                break
+
     def Functions(self, input = "Nothing. You left the input blank"):  # a default value is set to input
         self.Util.Header()
 
@@ -291,6 +309,10 @@ class Tutorial:
         print("List:", course_list)
         print("Joined:", joined)
 
+        number = 1000
+        flt = 2/3
+        print(f'{number:,}')
+        print(f'{flt:.3f}')
     
     def Slice(self):
         self.Util.Header()
@@ -602,6 +624,24 @@ clear() Empty the dictionary	students.clear()'''
             print(f"{name} - {grade}")
 
     def print_func(self):
+        self.Util.Header()
+
         name = 'Shawn'
         print('no newline', name, end = '',)
         print('no newline', end = '')
+
+    def read_text_line(self, file_path):
+        self.Util.Header()
+
+        with open(file_path, "r") as file:
+            for line in file:
+                print(line)
+
+        with open(file_path, 'r') as file:
+            line = file.readline()
+            while line:
+                # Process the line
+                print(line.strip())
+                line = file.readline()
+        
+        

@@ -57,9 +57,8 @@ def main():
     
     
     Instance.Lambdas()
-    
-
     Instance.print_func()
+    Instance.read_text_line(file_path = 'example.txt')
     
     t1 = time.time()
     Instance.Util.Header("Application Stats")

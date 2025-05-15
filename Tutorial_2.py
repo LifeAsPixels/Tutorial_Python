@@ -14,7 +14,7 @@ def main():
     print(Instance.__doc__)
     
     
-    Instance.String_Manipulation()
+    Instance.cycle()
     
     
     t1 = time.time()
