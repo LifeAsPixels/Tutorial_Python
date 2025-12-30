@@ -12,6 +12,6 @@ class Student:
         print(f"{self.name} enrolled in {course_name}.")
 
     # Method to display student info
-    def display_info(self):
-        print(f"Student: {self.name}, ID: {self.student_id}")
-        print("Courses:", ", ".join(self.courses))
+    def __str__(self):
+        courses = ", ".join(self.courses)
+        return f"Student: {self.name}, ID: {self.student_id}\nCourses: {courses}"

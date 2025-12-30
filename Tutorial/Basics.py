@@ -4,13 +4,29 @@ import csv
 from functools import reduce
 import logging
 import itertools
+import time
+import os
+import numpy as np
 
 logging.basicConfig(level = logging.DEBUG)
+
+cwd = 'C:\cs\code\py\Tutorial_Python'
+os.chdir(cwd)
+
+def clock(func):
+    def clocked(*args, **kwargs):
+        t0 = time.perf_counter()
+        result = func(*args, **kwargs)
+        elapsed = time.perf_counter() - t0
+        print(f"[{elapsed:.4f}s] {func.__name__} -> {result}")
+        return result
+    return clocked
 
 class Tutorial:
     """These are lego-brick-like notes meant to be read inline and compared in console for learning purposes."""
     
     Util = cu()
+
 
     def Syntax_Variables_Data_Types(self):
         self.Util.Header()
@@ -623,13 +639,15 @@ clear() Empty the dictionary	students.clear()'''
         for name, grade in student_records:
             print(f"{name} - {grade}")
 
+    @clock
     def print_func(self):
         self.Util.Header()
 
         name = 'Shawn'
         print('no newline', name, end = '',)
-        print('no newline', end = '')
+        print('no newline')
 
+    @clock
     def read_text_line(self, file_path):
         self.Util.Header()
 
@@ -644,4 +662,49 @@ clear() Empty the dictionary	students.clear()'''
                 print(line.strip())
                 line = file.readline()
         
-        
+    
+    @clock
+    def Ternary_Operator(self):
+        ''' Python's equivalent to the ternary operator found in other languages.'''
+        self.Util.Header()
+        age = 20
+        ticket_price = 20 if int(age) >= 18 else 5
+
+        print(f"The ticket price is ${ticket_price}")
+
+    @clock
+    def Recursion1(self, start):
+        """ Count down from a number  """
+        print(start)
+
+        # call the count_down if the next
+        # number is greater than 0
+        next = start - 1
+        if next > 0:
+            self.Recursion1(next)
+
+    @clock
+    def numpy_array_generation(self):
+        """
+        A tutorial on just the necessary numpy to complete the google ML Crash Course content
+        google ML crash course link:
+        https://developers.google.com/machine-learning/crash-course/
+
+        google numpy link:
+        https://colab.research.google.com/github/google/eng-edu/blob/main/ml/cc/exercises/numpy_ultraquick_tutorial.ipynb?utm_source=mlcc&utm_campaign=colab-external&utm_medium=referral&utm_content=mlcc-prework&hl=en#scrollTo=aiqqxDBINAOY
+        """
+
+        one_dimensional_array = np.array([1.1, 2.5, 3.5, 4.7, 6.0, 7.1, 8.5, 9.5])
+        print("one_dimensional_array: ", one_dimensional_array)
+
+        two_dimensional_array = np.array([[6, 5], [11, 7], [4, 8]])
+        print("two_dimensional_array: ", two_dimensional_array)
+
+        zeros_array = np.zeros()
+        ones_array = np.ones()
+        print("zeros_array: ", zeros_array)
+        print("ones_array: ", ones_array)
+
+        sequence_of_integers = np.arange(5,12)
+        print("sequence_of_integers: ", sequence_of_integers)
+
