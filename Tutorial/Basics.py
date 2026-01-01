@@ -7,6 +7,7 @@ import itertools
 import time
 import os
 import numpy as np
+import pandas as pd
 
 logging.basicConfig(level = logging.DEBUG)
 
@@ -695,16 +696,123 @@ clear() Empty the dictionary	students.clear()'''
         """
 
         one_dimensional_array = np.array([1.1, 2.5, 3.5, 4.7, 6.0, 7.1, 8.5, 9.5])
-        print("one_dimensional_array: ", one_dimensional_array)
+        print("one_dimensional_array: \n", one_dimensional_array)
 
         two_dimensional_array = np.array([[6, 5], [11, 7], [4, 8]])
-        print("two_dimensional_array: ", two_dimensional_array)
+        print("two_dimensional_array: \n", two_dimensional_array)
 
-        zeros_array = np.zeros()
-        ones_array = np.ones()
-        print("zeros_array: ", zeros_array)
-        print("ones_array: ", ones_array)
+        zeros_array = np.zeros(shape=(2,5))
+        ones_array = np.ones(shape=(4,2))
+        print("zeros_array: \n", zeros_array)
+        print("ones_array: \n", ones_array)
 
         sequence_of_integers = np.arange(5,12)
-        print("sequence_of_integers: ", sequence_of_integers)
+        print("sequence_of_integers: \n", sequence_of_integers)
 
+        random_int_50_100 = np.random.randint(low=50, high=101, size=(6,)) # high is exclusive
+        print("random_int_50_100: \n", random_int_50_100)
+
+        random_float_0_1 = np.random.random((6,))
+        print("random_float_0_1: \n", random_float_0_1)
+
+        random_float_2_3 = random_float_0_1 + 2
+        print("random_float_2_3: \n", random_float_2_3)
+
+        random_int_150_300 = random_int_50_100 * 3
+        print("random_int_150_300: \n", random_int_150_300)
+
+    @clock
+    def numpy_array_pracitce(self):
+        """
+        A tutorial on just the necessary numpy to complete the google ML Crash Course content
+        google ML crash course link:
+        https://developers.google.com/machine-learning/crash-course/
+
+        google numpy link:
+        https://colab.research.google.com/github/google/eng-edu/blob/main/ml/cc/exercises/numpy_ultraquick_tutorial.ipynb?utm_source=mlcc&utm_campaign=colab-external&utm_medium=referral&utm_content=mlcc-prework&hl=en#scrollTo=aiqqxDBINAOY
+        """
+
+        feature = np.arange(5, 21)
+        label = 3 * feature + 4
+        print("feature: \n", feature)
+        print("label: \n", label)
+
+        noise = np.random.randint(low=-2, high=3, size=feature.shape)
+        label += noise
+        print("noise: \n", noise)
+        print("label: \n", label)
+
+    @clock
+    def pandas_google_intro(self):
+        """
+        A tutorial on just the necessary pandas to complete the google ML Crash Course content
+        google ML crash course link:
+        https://developers.google.com/machine-learning/crash-course/
+
+        google pandas link:
+        https://colab.research.google.com/github/google/eng-edu/blob/main/ml/cc/exercises/pandas_dataframe_ultraquick_tutorial.ipynb?utm_source=mlcc&utm_campaign=colab-external&utm_medium=referral&utm_content=mlcc-prework&hl=en#scrollTo=JEBZyMdEOngx
+        """
+        # section 1
+        # prep the data
+        my_data = np.array([[0, 3], [10, 7], [20, 9], [30, 14], [40, 15]])
+        # prep the column names
+        my_column_names = ['temperature', 'activity']
+        # create the data with column names
+        my_dataframe = pd.DataFrame(data=my_data, columns=my_column_names)
+        print("my_dataframe: \n", my_dataframe)
+
+        # add a new column to an existing df
+        my_dataframe["adjusted"] = my_dataframe["activity"] + 2
+        print("\n my_dataframe: \n", my_dataframe)
+
+        # ways of retrieving specific data from df
+        print("\n Rows #0, #1, and #2:")
+        print(my_dataframe.head(3), '\n')
+
+        print("\n Row #2:")
+        print(my_dataframe.iloc[[2]], '\n')
+
+        print("\n Rows #1, #2, and #3:")
+        print(my_dataframe[1:4], '\n')
+
+        print("\n Column 'temperature':")
+        print(my_dataframe['temperature'])
+
+        # section 2
+        my_data = np.random.randint(low=0, high=101, size=(3, 4))
+        my_column_names = ['Eleanor', 'Chidi', 'Tahani', 'Jason']
+
+        df = pd.DataFrame(data=my_data, columns=my_column_names)
+        print("\n df: \n", df)
+        print("\n Row #1:")
+        print(df.iloc[[1]], '\n')
+        df['Janet'] = df['Tahani'] + df['Jason']
+        print("\n df: \n", df)
+    
+        # section 3 making copies
+
+        # Create a reference by assigning my_dataframe to a new variable.
+        print("\n Experiment with a reference:")
+        reference_to_df = df
+
+        # Print the starting value of a particular cell.
+        print("\n   Starting value of df: %d" % df['Jason'][1])
+        print("\n   Starting value of reference_to_df: %d\n" % reference_to_df['Jason'][1])
+
+        # Modify a cell in df.
+        df.at[1, 'Jason'] = df['Jason'][1] + 5
+        print("\n   Updated df: %d" % df['Jason'][1])
+        print("\n   Updated reference_to_df: %d\n\n" % reference_to_df['Jason'][1])
+
+        # Create a true copy of my_dataframe
+        print("\n Experiment with a true copy:")
+        copy_of_my_dataframe = my_dataframe.copy()
+
+        # Print the starting value of a particular cell.
+        print("\n   Starting value of my_dataframe: %d" % my_dataframe['activity'][1])
+        print("\n   Starting value of copy_of_my_dataframe: %d\n" % copy_of_my_dataframe['activity'][1])
+
+        # Modify a cell in df.
+        my_dataframe.at[1, 'activity'] = my_dataframe['activity'][1] + 3
+        print("\n   Updated my_dataframe: %d" % my_dataframe['activity'][1])
+        print("\n   copy_of_my_dataframe does not get updated: %d" % copy_of_my_dataframe['activity'][1])

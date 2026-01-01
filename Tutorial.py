@@ -61,17 +61,19 @@ def main():
         for member in [alice, mr_smith]:
             print(f'{member.get_role()}: {member.get_details()}. {member.get_contact_info()}')
     
-    numpy = [
-        Instance.numpy_array_generation,
+    data_analysis = [
+        # Instance.numpy_array_generation,
+        # Instance.numpy_array_pracitce,
+        Instance.pandas_google_intro,
 
     ]
     # use commenting inside this list to toggle execution of sections of main()
     groups_to_run = [
-        # basics,
+        # basics ,
         # input_output,
-        # oop,
+        # oop, 
         # apie,
-        numpy,
+        data_analysis,
     ]
 
     for group in groups_to_run:
@@ -82,6 +84,3 @@ def main():
                 action()
 
     Instance.Util.Header("Application Stats")
-
-if __name__ == "__main__":
-    main()
