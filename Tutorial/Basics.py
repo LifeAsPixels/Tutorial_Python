@@ -8,11 +8,9 @@ import time
 import os
 import numpy as np
 import pandas as pd
-
-logging.basicConfig(level = logging.DEBUG)
-
-cwd = 'C:\cs\code\py\Tutorial_Python'
-os.chdir(cwd)
+from pathlib import Path
+import inspect
+import rich
 
 def clock(func):
     def clocked(*args, **kwargs):
@@ -28,6 +26,27 @@ class Tutorial:
     
     Util = cu()
 
+    def __init__(self):
+        self.data_dir = Path(os.path.join(self.caller_script_dir(), 'data'))
+        #files
+        self.make_dir(self.data_dir)
+        self.grades = Path(os.path.join(self.data_dir, 'grades.csv'))
+        self.students = Path(os.path.join(self.data_dir, 'students.json'))
+        self.example = Path(os.path.join(self.data_dir, 'example.txt'))
+        self.students_txt = Path(os.path.join(self.data_dir, 'students.txt'))
+
+    def make_dir(self, path):
+            path.mkdir(parents=True, exist_ok=True)
+            return None
+
+    def caller_script_dir(self):
+        # walk the stack and find the first frame whose filename is not this file
+        this_file = Path(__file__).resolve()
+        for frame_info in inspect.stack()[1:]:
+            caller_path = Path(frame_info.filename).resolve()
+            if caller_path != this_file:
+                return caller_path.parent
+        return None
 
     def Syntax_Variables_Data_Types(self):
         self.Util.Header()
@@ -345,22 +364,22 @@ class Tutorial:
         # Substring from index 7 to 19
         print(course[7:20])  # "Introduction"
 
-    def Text_IO(self):
+    def Text_IO(self, file_path):
         self.Util.Header()
 
         # Writing to a file
-        with open("students.txt", "w") as file:
+        with open(file_path, "w") as file:
             file.write("Alice - A\n")
             file.write("Bob - B\n")
 
         # Reading from a file
-        with open("students.txt", "r") as file:
+        with open(file_path, "r") as file:
             contents = file.read()
 
         print("File contents:")
         print(contents)
 
-    def JSON_IO(self):
+    def JSON_IO(self, file_path):
         self.Util.Header()
         
         # Student dictionary
@@ -370,11 +389,11 @@ class Tutorial:
         }
 
         # Write JSON to file
-        with open("students.json", "w") as file:
+        with open(file_path, "w") as file:
             json.dump(students, file, indent=4)
 
         # Read JSON from file
-        with open("students.json", "r") as file:
+        with open(file_path, "r") as file:
             data = json.load(file)
 
         print("JSON contents:")
@@ -540,38 +559,38 @@ clear() Empty the dictionary	students.clear()'''
 
         print(results)  # ['Pass', 'Fail', 'Pass', 'Fail']
         
-    def IO_Text(self):
+    def IO_Text(self, file_path):
         self.Util.Header()
 
         # Writing student names to a text file
-        with open("students.txt", "w") as file:
+        with open(file_path, "w") as file:
             file.write("Alice\n")
             file.write("Bob\n")
             file.write("Charlie\n")
 
         # Reading from the text file
-        with open("students.txt", "r") as file:
+        with open(file_path, "r") as file:
             for line in file:
                 print(line.strip())  # .strip() removes the newline
 
-    def IO_CSV(self):
+    
+    def IO_CSV(self, file_path):
         self.Util.Header()
-
         # Writing to CSV
-        with open("grades.csv", "w", newline="") as file:
+        with open(file_path, "w", newline="") as file:
             writer = csv.writer(file)
             writer.writerow(["Name", "Grade"])
             writer.writerow(["Alice", "A"])
             writer.writerow(["Bob", "B"])
 
         # Reading from CSV
-        with open("grades.csv", "r") as file:
+        with open(file_path, "r") as file:
             reader = csv.reader(file)
             for row in reader:
                 print(row)
 
 
-    def IO_JSON(self):
+    def IO_JSON(self, file_path):
         self.Util.Header()
         
         import json
@@ -585,11 +604,11 @@ clear() Empty the dictionary	students.clear()'''
         }
 
         # Write JSON file
-        with open("students.json", "w") as file:
+        with open(file_path, "w") as file:
             json.dump(students, file, indent=4)
 
         # Read JSON file
-        with open("students.json", "r") as file:
+        with open(file_path, "r") as file:
             data = json.load(file)
             for s in data["students"]:
                 print(s["name"], s["grade"])
@@ -648,6 +667,13 @@ clear() Empty the dictionary	students.clear()'''
         print('no newline', name, end = '',)
         print('no newline')
 
+    @clock
+    def write_text(self, file_path):
+        with open(file_path, "w") as file:
+            file.write('''some lines of text
+a new line
+
+another line here''')
     @clock
     def read_text_line(self, file_path):
         self.Util.Header()

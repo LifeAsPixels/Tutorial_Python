@@ -3,11 +3,11 @@ import time
 from Tutorial.Basics import clock
 
 # delete a variable
-big_number = 9999
-del big_number
+# big_number = 9999
+# del big_number
 
 @clock
-def main():    
+def main():
     Instance = Basics.Tutorial()
     Instance.Util.Header(title = "Python Tutorial")
     print(Instance.__doc__)
@@ -27,17 +27,18 @@ def main():
     input_output = [
         # Instance.Input_Output(),
         Instance.String_Manipulation,
-        Instance.Slice,
-        Instance.Lists,
-        Instance.Tuples,
-        Instance.Dictionaries,
-        Instance.Sets,
-        Instance.List_Comprehension,
-        Instance.IO_Text,
-        Instance.IO_JSON,
-        Instance.IO_CSV,
+        # Instance.Slice,
+        # Instance.Lists,
+        # Instance.Tuples,
+        # Instance.Dictionaries,
+        # Instance.Sets,
+        # Instance.List_Comprehension,
+        lambda: Instance.IO_Text(Instance.students_txt),
+        lambda: Instance.IO_JSON(Instance.students),
+        lambda: Instance.IO_CSV(Instance.grades),
         Instance.print_func,
-        lambda: Instance.read_text_line(file_path = 'example.txt'),
+        lambda: Instance.write_text(Instance.example),
+        lambda: Instance.read_text_line(Instance.example),
     ]
     def oop():
         Instance.Util.Header(title = "OOP - Class, Method, Property")
@@ -70,10 +71,10 @@ def main():
     # use commenting inside this list to toggle execution of sections of main()
     groups_to_run = [
         # basics ,
-        # input_output,
+        input_output,
         # oop, 
         # apie,
-        data_analysis,
+        # data_analysis,
     ]
 
     for group in groups_to_run:
@@ -84,3 +85,6 @@ def main():
                 action()
 
     Instance.Util.Header("Application Stats")
+
+if __name__ == "__main__":
+    main()
