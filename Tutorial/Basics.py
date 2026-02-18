@@ -842,3 +842,13 @@ another line here''')
         my_dataframe.at[1, 'activity'] = my_dataframe['activity'][1] + 3
         print("\n   Updated my_dataframe: %d" % my_dataframe['activity'][1])
         print("\n   copy_of_my_dataframe does not get updated: %d" % copy_of_my_dataframe['activity'][1])
+
+    @clock
+    def dicitonary_interact(self):
+        rich.print()
+        dictionary = {1:2}
+        if dictionary[1]:
+            print(True)
+        else:
+            print(False)
+

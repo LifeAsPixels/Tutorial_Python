@@ -13,16 +13,17 @@ def main():
     print(Instance.__doc__)
 
     basics = [
-        Instance.Syntax_Variables_Data_Types,
-        Instance.Type_Mutability,
-        Instance.Operators,
-        Instance.Loops,
-        lambda: Instance.Functions(7),
-        Instance.Builtin_Functions,
-        # Instance.Exceptions(),
-        Instance.Lambdas,
-        Instance.Ternary_Operator,
-        lambda: Instance.Recursion1(3),
+        # Instance.Syntax_Variables_Data_Types,
+        # Instance.Type_Mutability,
+        # Instance.Operators,
+        # Instance.Loops,
+        # lambda: Instance.Functions(7),
+        # Instance.Builtin_Functions,
+        # # Instance.Exceptions(),
+        # Instance.Lambdas,
+        # Instance.Ternary_Operator,
+        # lambda: Instance.Recursion1(3),
+        Instance.dicitonary_interact()
     ]
     input_output = [
         # Instance.Input_Output(),
@@ -70,8 +71,8 @@ def main():
     ]
     # use commenting inside this list to toggle execution of sections of main()
     groups_to_run = [
-        # basics ,
-        input_output,
+        basics ,
+        # input_output,
         # oop, 
         # apie,
         # data_analysis,
