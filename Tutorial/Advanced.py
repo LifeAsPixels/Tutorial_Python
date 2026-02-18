@@ -5,7 +5,7 @@ import sys
 
 class Interning:
     '''example class description'''
-    value = 0
+    some_value = 0
 
     def __init__(self):
         '''init descr'''
@@ -34,6 +34,7 @@ class Interning:
 
     def example2(self):
         return 5
+    
 class Treerecord:
     '''
     A model class for btree records intended to be used with a 
